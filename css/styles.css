@@ -1,4 +1,6 @@
-body
+/* add styles to the main drawing area using its id value */
+
+#playArea
 {
-	/* background-color: red; */
+    background-color: #e3e0d8;
 }
