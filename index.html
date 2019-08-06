@@ -1,15 +1,160 @@
- <!DOCTYPE html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!-- Title that will appear in browser tab -->
     <title>Maze Runner</title>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<!-- Use CDN version of D3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 	
+	<!-- import style sheet here -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
-  </head>
-  <body>
-  
-  </body>
+</head>
+<body>
+    
+	<script>
+
+	/* Multi dimensional array to hold level information
+	perhaps a later build will assign this to a csv file */
+	var level1 = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+		[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0],
+		[0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+		[0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0],
+		[0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0],
+		[0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+				 
+    /* create a canvas for d3 to render onto
+	attach it to the body dom element and give
+	it a width and height that suit both mobile
+	and desktop enviornments */
+    var scene = d3.select("body").append("svg")
+        .attr("width", 640)
+        .attr("height", 480)
+		.on("click", move);
+
+	/* These variables will hold the x and y postitions
+	of the player character. They are set to an initial value
+	of 0, 0. This means the player will start in the top left
+	of the screen */
+	var heroX = 0;
+	var heroY = 0;	
+
+	/* */
+	const HERO_WIDTH = 32;
+	const HERO_HEIGHT = 32;
+
+	const TILE_WIDTH = 32;
+	const TILE_HEIGHT = 32;
+	
+	const TILES_ACROSS = 20;
+	const TILES_DOWN = 15;
+
+	/* */
+	class Tile
+	{
+		constructor(x, y)
+		{
+			this.sprite =  scene.append("rect")
+				.attr("x", x)
+                .attr("y", y)
+                .attr("width", TILE_WIDTH)
+		        .attr("height", TILE_HEIGHT)
+				.attr('fill', '#666666');
+		}
+	}
+
+	var tileCounter = 0;
+	var tiles = [];
+
+	for(var i = 0; i < TILES_ACROSS; i++)
+	{
+		for(var j = 0; j < TILES_DOWN; j++)
+		{
+			if(level1[j][i] == 1)
+			{
+			    //document.write(level1[j][i]);
+				tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
+			}
+		}
+
+		tileCounter++;
+	}
+	
+	var hero = scene.append("rect")
+		.attr("id", "hero")
+        .attr("x", heroX)
+        .attr("y", heroY)
+        .attr("width", 32)
+		.attr("height", 32)
+		.attr('fill', '#17c200')
+		.style("opacity", 0.5);
+
+	function update()
+	{
+		hero.attr("x", heroX);
+		hero.attr("y", heroY);
+		
+		d3.select("#hero")
+            .transition()
+            .duration(2000)
+            .attr("x", "32");
+	};
+
+	function move()
+	{
+		/*the d3 mouse method takes a dom element as an argument
+		in this case it is the scene. When the user clicks or
+		taps the scene, the mosue position is captured. The X position
+		of the mouse is stored in mouse[0] and the Y position in mouse[1]
+		we use these positions to determine where our hero will move
+		https://octoperf.com/blog/2018/04/17/d3-js-mouse-events-and-transitions-tutorial/
+		*/
+		var mouse = d3.mouse(this);
+
+		if(mouse[0] < heroX)
+		{
+			heroX -= 32;
+		}
+
+		if(mouse[0] > heroX)
+		{
+			heroX += 32;
+		}
+
+		if(mouse[1] > heroY)
+		{
+			heroY += 32;
+		}
+
+		if(mouse[1] < heroY)
+		{
+			heroY -= 32;
+		}
+
+		update();
+		draw();
+	};
+
+	function draw()
+	{
+		window.requestAnimationFrame();
+	};
+
+	</script>
+
+</body>
 </html>
