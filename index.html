@@ -8,6 +8,9 @@
 	<!-- Title that will appear in browser tab -->
     <title>Maze Runner</title>
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 	<!-- Use CDN version of D3 -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 	
@@ -17,8 +20,11 @@
 </head>
 <body>
 
-	<div id="playArea"></div>
-    
+<div class="container">
+  <!-- Content here -->
+
+	<div class="row" id="playArea"></div>
+    </div>
 	<script>
 
 	/* Multi dimensional array to hold level information
@@ -46,6 +52,8 @@
     var scene = d3.select("#playArea").append("svg")
         .attr("width", 640)
         .attr("height", 480)
+		/* COMMENT ON VIEWBOX */
+		.attr("viewBox", `0 0 640 480`)
 		.on("click", move);
 
 	/* These variables will hold the x and y postitions
