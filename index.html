@@ -20,11 +20,12 @@
 </head>
 <body>
 
-<div class="container">
-  <!-- Content here -->
+<!-- This container houses the playarea div that displays the game content -->
+	<div class="container">
+		<div class="row" id="playArea">
+		</div>
+	</div>
 
-	<div class="row" id="playArea"></div>
-    </div>
 	<script>
 
 	/* Multi dimensional array to hold level information
@@ -112,49 +113,19 @@
 		.attr("height", 32)
 		.attr('fill', '#17c200')
 
-	function update()
+	function move()
 	{
+		/* */
+		var mouse = d3.mouse(this);
+
 		hero.attr("x", heroX);
 		hero.attr("y", heroY);
 		
 		d3.select("#hero")
             .transition()
             .duration(2000)
-            .attr("x", "32");
-	};
+            .attr("x", mouse[0]);
 
-	function move()
-	{
-		/*the d3 mouse method takes a dom element as an argument
-		in this case it is the scene. When the user clicks or
-		taps the scene, the mosue position is captured. The X position
-		of the mouse is stored in mouse[0] and the Y position in mouse[1]
-		we use these positions to determine where our hero will move
-		https://octoperf.com/blog/2018/04/17/d3-js-mouse-events-and-transitions-tutorial/
-		*/
-		var mouse = d3.mouse(this);
-
-		if(mouse[0] < heroX)
-		{
-			heroX -= 32;
-		}
-
-		if(mouse[0] > heroX)
-		{
-			heroX += 32;
-		}
-
-		if(mouse[1] > heroY)
-		{
-			heroY += 32;
-		}
-
-		if(mouse[1] < heroY)
-		{
-			heroY -= 32;
-		}
-
-		update();
 		draw();
 	};
 
