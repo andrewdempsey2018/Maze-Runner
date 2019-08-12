@@ -118,13 +118,15 @@
 		/* */
 		var mouse = d3.mouse(this);
 
+		heroX = mouse[0];
+
 		hero.attr("x", heroX);
 		hero.attr("y", heroY);
 		
 		d3.select("#hero")
             .transition()
             .duration(2000)
-            .attr("x", mouse[0]);
+            .attr("x", heroX);
 
 		draw();
 	};
