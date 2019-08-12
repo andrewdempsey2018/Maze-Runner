@@ -13,6 +13,9 @@
 
 	<!-- Use CDN version of D3 -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+
+	<!-- Use CDN version of D3 -->
+	<script type="text/javascript" src="assets/levels.js"></script>
 	
 	<!-- import style sheet here -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -28,25 +31,7 @@
 
 	<script>
 
-	/* Multi dimensional array to hold level information
-	perhaps a later build will assign this to a csv file */
-	var level1 = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
-		[1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1],
-		[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1],
-		[1,0,1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1],
-		[1,0,1,0,1,0,0,0,0,0,0,0,0,1,0,1,0,1,0,1],
-		[1,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1],
-		[1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1],
-		[1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1],
-		[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1],
-		[1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
-				 
-    /* create a canvas for d3 to render onto
+	/* create a canvas for d3 to render onto
 	attach it to the body dom element and give
 	it a width and height that suit both mobile
 	and desktop enviornments */
