@@ -47,6 +47,13 @@
 		</div>
 	</div>
 
+<!-- create a DOM element that will be referenced to load in game sound effects.
+It is important to load sounds in multiple formats (OGG, MP3) in order to ensure wide compatibility -->
+<audio id="moveSound">
+  <source src="assets/move.ogg" type="audio/ogg">
+  <source src="assets/move.mp3" type="audio/mpeg">
+</audio>
+
 <!-- opening tag of the main Javascript source code -->
 	<script>
 
@@ -101,23 +108,11 @@
 		}
 	}
 
-	/* iterate over an array containing level data and build that level
-	in rows and columns */
-	var tileCounter = 0;
-	var tiles = [];
+	/* */
+	loadLevel(level3);
 
-	for(var i = 0; i < TILES_ACROSS; i++)
-	{
-		for(var j = 0; j < TILES_DOWN; j++)
-		{
-			if(level1[j][i] == 1)
-			{
-			    tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
-			}
-		}
-
-		tileCounter++;
-	}
+	/* load sounds that will be played during the game */
+	var moveSound = document.getElementById("moveSound");
 	
 	/* build a player sprite using D3 */
 	var player = scene.append("rect")
@@ -154,6 +149,8 @@
 				.attr("y", destY)
 				.attr("x", destX);
 
+		moveSound.play();
+
 		window.requestAnimationFrame();
 	};
 
@@ -163,6 +160,29 @@
 		var gridPosition = Math.floor(object / TILE_WIDTH);
 		return gridPosition * TILE_WIDTH;
 	}
+
+	/* takes a level name as an argument, iterates over each entry in that levels data,
+	if the data is the number 0, it is ignored and the next piece of data is read. If the data
+	is the number 1, a tile is placed in those coordinates */
+	function loadLevel(levelToLoad)
+	{
+		
+		var tileCounter = 0;
+		var tiles = [];
+
+		for(var i = 0; i < TILES_ACROSS; i++)
+		{
+			for(var j = 0; j < TILES_DOWN; j++)
+			{
+				if(levelToLoad[j][i] == 1)
+				{
+					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
+				}
+			}
+
+			tileCounter++;
+	}
+}
 
 	</script>
 

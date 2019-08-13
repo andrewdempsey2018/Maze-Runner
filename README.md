@@ -38,24 +38,17 @@ A high level plan for the game was first drawn out on paper...
 
 ## Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
- 
-### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
+### Sound effects
 
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
-
-### Features Left to Implement
-- Another feature idea
+### Multiple levels
 
 ## Technologies Used
 
 ### Languages
 
 The game was written using Javascript and styling was done with CSS. The game itself is housed in a webpage using HTML.
+
+### Libraries and software packages
 
 - [Google Fonts](https://fonts.google.com/)
     - Google Fonts provides free fonts that were used to improve the asthetic appeal of the application.
@@ -71,6 +64,9 @@ The game was written using Javascript and styling was done with CSS. The game it
 
 - [SFXR](http://www.drpetter.se/project_sfxr.html)
     - A sound effects generating software package used for creating the sounds used in game. The program provides a simple user interface allowing fast creation of unique sounds.
+
+- [Audacity](https://www.audacityteam.org/)
+    - Free sound editing software. Used to convert sound files into differnt formats to ensure game sounds play on a wide variety of devices and browsers.
 
 - [D3](https://d3js.org/)
     - A Javascript library that is used mainly for the creation of data driven documents. In the case of this game, D3's drawing functions were used to create the player character as well as the building blocks for each maze.
