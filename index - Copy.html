@@ -29,12 +29,6 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="row" id="UI">
-			 <button type="button">Click Me!</button> 
-		</div>
-	</div>
-
 	<script>
 
 	/* create a canvas for d3 to render onto
@@ -104,44 +98,62 @@
 		.attr("height", 32)
 		.attr('fill', '#17c200')
 
+	var title = scene.append("rect")
+		.attr("id", "title")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", 128)
+		.attr("height", 128)
+		.attr('fill', '#4287f5');
+
 	function move()
 	{
 		/* */
 		var mouse = d3.mouse(this);
 
-		var destX = getGridPosition(mouse[0]);
-		var destY = getGridPosition(mouse[1]);
-
 		if(mouse[1] > playerY && mouse[1] < (playerY + PLAYER_HEIGHT))
 		{
  
 
+			var destX = getGridPosition(mouse[0]);
+
 			player.attr("x", playerX);
 		
+			d3.select("#player")
+				.transition()
+				.duration(2000)
+				.attr("x", destX);
+
 			playerX = destX;
 		}
 
-		if(mouse[0] > playerY && mouse[0] < (playerX + PLAYER_HEIGHT))
+		if(mouse[0] > playerX && mouse[0] < (playerX + PLAYER_WIDTH))
 		{
  
 
+			var destY = getGridPosition(mouse[1]);
+
 			player.attr("y", playerY);
 		
-			playerY = destY;
-		}
-
-		d3.select("#player")
+			d3.select("#player")
 				.transition()
 				.duration(2000)
-				.attr("y", destY)
-				.attr("x", destX);
+				.attr("y", destY);
 
+			playerY = destY;
+		}
+	
+		draw();
+	};
+
+	function draw()
+	{
 		window.requestAnimationFrame();
 	};
 
-	function getGridPosition(object)
+	function getGridPosition(arg)
 	{
-		var gridPosition = Math.floor(object / TILE_WIDTH);
+		var gridPosition = Math.floor(arg / TILE_WIDTH);
 		return gridPosition * TILE_WIDTH;
 	}
 
