@@ -34,27 +34,32 @@
 		</div>
 	</div>
 
-<!-- This container houses the playarea div. This div houses all of the animations that make up the game -->
+    <!-- This container houses the playarea div. This div houses all of the animations that make up the game -->
 	<div class="container">
 		<div class="row" id="playArea">
 		</div>
 	</div>
 
-<!-- this container houses the reset game button, how to play button and countdown timer -->
+    <!-- this container houses the reset game button, how to play button and countdown timer -->
 	<div class="container">
-		<div class="row" id="UI">
-			 <button type="button">Click Me!</button> 
+		<div class="row">
+            <div class="col-sm UI">
+			    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="restartGame()">Reset</button>
+			</div>
+			<div class="col-sm UI">
+			    <button type="button" class="btn btn-primary btn-lg btn-block">How To Play</button>
+			</div>
 		</div>
 	</div>
 
-<!-- create a DOM element that will be referenced to load in game sound effects.
-It is important to load sounds in multiple formats (OGG, MP3) in order to ensure wide compatibility -->
-<audio id="moveSound">
-  <source src="assets/move.ogg" type="audio/ogg">
-  <source src="assets/move.mp3" type="audio/mpeg">
-</audio>
+    <!-- create a DOM element that will be referenced to load in game sound effects.
+    It is important to load sounds in multiple formats (OGG, MP3) in order to ensure wide compatibility -->
+    <audio id="moveSound">
+        <source src="assets/move.ogg" type="audio/ogg">
+        <source src="assets/move.mp3" type="audio/mpeg">
+    </audio>
 
-<!-- opening tag of the main Javascript source code -->
+    <!-- opening tag of the main Javascript source code -->
 	<script>
 
 	/* create a canvas for d3 to render onto
@@ -115,7 +120,7 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	var currentLevel = 0;
 
 	/* an array of level names, we will use this array to deal with changing levels */
-	var levels = [level1, level2, level3];
+	var levels = [level1, level2, level3, level4, level5];
 
 	/* call the load level function, loading the first level initially */
 	loadLevel(levels[currentLevel]);
@@ -123,13 +128,15 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	/* load sounds that will be played during the game */
 	var moveSound = document.getElementById("moveSound");
 	
-	//spawnPlayer();
-
+	/* called when the user clicks on the play area. Moves the player to the nearest valid
+	location to the mouse pointer */
     function move()
 	{
-		/* */
+		/* d3.mouse provides us with functionality to work with the mouse.
+		It also works with a user tap in the same way.*/
 		var mouse = d3.mouse(this);
 
+		/* mouse[0] and mouse[1] return the mouse X position and mouse Y position respectivly */
 		var destX = getGridPosition(mouse[0]);
 		var destY = getGridPosition(mouse[1]);
 
@@ -157,8 +164,15 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 			d3.select('svg').selectAll('*').remove();
 
 			currentLevel++;
+
+			/* if we run out of levels, reset the game */
+			if(currentLevel > 4)
+			{
+				currentLevel = 0;
+			}
+
+			/* once we know what level to load, call the loadLevel function with the level numeber as the argument */
 			loadLevel(levels[currentLevel]);
-			//window.alert("hi");
 		}
 
 		/* call the play mothod on the moveSound element to play the sound */
@@ -168,14 +182,14 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		window.requestAnimationFrame();
 	};
 
-	/* takes a coordinate value and returns that value as a grid value */
+	/* rounds the argument to the nearest 32, removing any remainder */
 	function getGridPosition(object)
 	{
 		var gridPosition = Math.floor(object / TILE_WIDTH);
 		return gridPosition * TILE_WIDTH;
 	}
 
-	/* takes a coordinate value and returns that value as a grid value */
+	/* returns a grid value. used to determine is a player has colided with the level or exit */
 	function getCoordinate(object)
 	{
 		var co = Math.floor(object / TILE_WIDTH);
@@ -193,9 +207,11 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		playerY = 32;
 		spawnPlayer();
 		
+		/* this array will hold every individual tile that we create from iterating through the level array */
 		var tileCounter = 0;
 		var tiles = [];
 
+		/* nested for loop, searches the array column by column */
 		for(var i = 0; i < TILES_ACROSS; i++)
 		{
 			for(var j = 0; j < TILES_DOWN; j++)
@@ -204,30 +220,32 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 				/* if we encounter number 1, load a grey tile */
 				if(levelToLoad[j][i] == 1)
 				{
-					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#666666');
+					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#666666'); //grey
 				}
 
 				/* if we encounter number 2, load a yellow tile (an exit from the maze) */
 				if(levelToLoad[j][i] == 2)
 				{
-					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#ffed47');
+					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#ffed47'); //yellow
 				}
 			}
 
+			/* increment tileCounter so we may have an index number for the next tile in the loop */
 			tileCounter++;
 		}
 	}
 
+	/* creates a player character when called and initializes the players attributes*/
 	function spawnPlayer()
 	{
-		/* build a player sprite using D3 */
+		/* build a player sprite using D3 and attach it to the play area */
 	    player = scene.append("rect")
 		    .attr("id", "player")
             .attr("x", playerX)
             .attr("y", playerY)
             .attr("width", 32)
 		    .attr("height", 32)
-		    .attr('fill', '#17c200');
+		    .attr('fill', '#17c200'); //green
 	};
 
 	</script>

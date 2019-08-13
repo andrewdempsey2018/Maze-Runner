@@ -1,14 +1,21 @@
-/* Styles for main gameplay area */
+/* Style main gameplay area */
 
 #playArea
 {
     background-color: #e3e0d8;
 }
 
-/* Styles for main title area at top of screen */
+/* Style title area at top of screen */
 
 .mainTitle
 {
 	/* Notable font (from Google Fonts) looks good, sans serif as backup */
 	font-family: 'Notable', sans-serif;
+}
+
+/* Style buttons at bottom of screen */
+/**/
+.UI
+{
+	padding-top: 10px;
 }
