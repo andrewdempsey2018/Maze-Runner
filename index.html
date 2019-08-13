@@ -75,7 +75,8 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	of 0, 32. This means the player will start in the top left
 	of the screen */
 	var playerX = 0;
-	var playerY = 32;	
+	var playerY = 32;
+	var player = null;
 
 	/* Constants to hold the width and height of the player character
 	these constants are used in calculations that ensire the player does not venture into areas of
@@ -111,7 +112,7 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 
 	/* this variable is incremented when the player reaches an exit, enableing advancement
 	to the next level */
-	var currentLevel = 2;
+	var currentLevel = 0;
 
 	/* an array of level names, we will use this array to deal with changing levels */
 	var levels = [level1, level2, level3];
@@ -122,14 +123,7 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	/* load sounds that will be played during the game */
 	var moveSound = document.getElementById("moveSound");
 	
-	/* build a player sprite using D3 */
-	var player = scene.append("rect")
-		.attr("id", "player")
-        .attr("x", playerX)
-        .attr("y", playerY)
-        .attr("width", 32)
-		.attr("height", 32)
-		.attr('fill', '#17c200')
+	//spawnPlayer();
 
     function move()
 	{
@@ -160,8 +154,11 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		/* if the player finds an exit, increment the level number then load the next level */
 		if(levels[currentLevel][getCoordinate(destY + 16)][getCoordinate(destX + 16)] == 2)
 		{
+			d3.select('svg').selectAll('*').remove();
+
 			currentLevel++;
-			loadLevel(currentLevel);
+			loadLevel(levels[currentLevel]);
+			//window.alert("hi");
 		}
 
 		/* call the play mothod on the moveSound element to play the sound */
@@ -194,6 +191,7 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		so that the player character begins the level at the starting position */
 		playerX = 0;
 		playerY = 32;
+		spawnPlayer();
 		
 		var tileCounter = 0;
 		var tiles = [];
@@ -202,6 +200,7 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		{
 			for(var j = 0; j < TILES_DOWN; j++)
 			{
+	
 				/* if we encounter number 1, load a grey tile */
 				if(levelToLoad[j][i] == 1)
 				{
@@ -218,6 +217,18 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 			tileCounter++;
 		}
 	}
+
+	function spawnPlayer()
+	{
+		/* build a player sprite using D3 */
+	    player = scene.append("rect")
+		    .attr("id", "player")
+            .attr("x", playerX)
+            .attr("y", playerY)
+            .attr("width", 32)
+		    .attr("height", 32)
+		    .attr('fill', '#17c200');
+	};
 
 	</script>
 
