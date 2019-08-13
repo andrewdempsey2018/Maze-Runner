@@ -8,6 +8,7 @@
 	<!-- Title that will appear in browser tab -->
     <title>Maze Runner</title>
 
+	<!-- Import Bootstrap from CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
@@ -26,6 +27,7 @@
 </head>
 <body>
 
+	<!-- Container used to house the games name in large letters above the play area -->
 	<div class="container mainTitle">
 		<div class="row" id="titleArea">
 			<h1>Maze Runner</h1>
@@ -38,12 +40,14 @@
 		</div>
 	</div>
 
+<!-- this container houses the reset game button, how to play button and countdown timer -->
 	<div class="container">
 		<div class="row" id="UI">
 			 <button type="button">Click Me!</button> 
 		</div>
 	</div>
 
+<!-- opening tag of the main Javascript source code -->
 	<script>
 
 	/* create a canvas for d3 to render onto
@@ -53,7 +57,9 @@
     var scene = d3.select("#playArea").append("svg")
         .attr("width", 640)
         .attr("height", 480)
-		/* COMMENT ON VIEWBOX */
+		/* viewbox attribute scales the DOM element it is attached to to match the
+		screen size of the host device. The element will not scale smaller than the first two arguments
+		and will not scal larger than the second two arguments */
 		.attr("viewBox", `0 0 640 480`)
 		.on("click", move);
 
@@ -64,17 +70,24 @@
 	var playerX = 0;
 	var playerY = 32;	
 
-	/* */
+	/* Constants to hold the width and height of the player character
+	these constants are used in calculations that ensire the player does not venture into areas of
+	the map that should be inaccessible*/
 	const PLAYER_WIDTH = 32;
 	const PLAYER_HEIGHT = 32;
 
+	/* Constants holding the size of the blocks that make up each level
+	these values will be used when rendering a level */
 	const TILE_WIDTH = 32;
 	const TILE_HEIGHT = 32;
 	
+	/* constants that are used to build the level in rows and columns */
 	const TILES_ACROSS = 20;
 	const TILES_DOWN = 15;
 
-	/* */
+	/* Tile class. As there are many tiles in each level, it is important to
+	have a reusable class that allows us to create as many as we need. The constructor
+	takes two arguments, the x and y position of the tile */
 	class Tile
 	{
 		constructor(x, y)
@@ -88,6 +101,8 @@
 		}
 	}
 
+	/* iterate over an array containing level data and build that level
+	in rows and columns */
 	var tileCounter = 0;
 	var tiles = [];
 
@@ -97,14 +112,14 @@
 		{
 			if(level1[j][i] == 1)
 			{
-			    //document.write(level1[j][i]);
-				tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
+			    tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
 			}
 		}
 
 		tileCounter++;
 	}
 	
+	/* build a player sprite using D3 */
 	var player = scene.append("rect")
 		.attr("id", "player")
         .attr("x", playerX)
@@ -142,6 +157,7 @@
 		window.requestAnimationFrame();
 	};
 
+	/* takes a coordinate value and returns that value as a grid value */
 	function getGridPosition(object)
 	{
 		var gridPosition = Math.floor(object / TILE_WIDTH);
