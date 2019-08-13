@@ -3,6 +3,10 @@
 This a single player game where the player guides their character from the start of a maze to the end within a time limit. There are multiple mazes to explore and each one is more complex and challenging than the last.  
 
 The game is compatible with mobile devices as well as desktop computers in a variety of browsers. The player controls the character by clicking or tapping the part of the screen that they want to move to.
+
+### How to play
+
+The player controls the green square and must guide it to the exit (a yellow square). To get to the exit, the player must navigate the maze. This is acheived by clicking or tapping the point in the map where the player would like to go. The green square will then travel to that location.
  
 ## UX
 
@@ -40,9 +44,15 @@ A high level plan for the game was first drawn out on paper...
 
 ### Sound effects
 
-a
+The game features sound effects that are played using standard Javascript functionality.
 
 ### Multiple levels
+
+The player can progress through a number of levels. When an exit is reached, the code will select another level and load it to the gameplay screen.
+
+### Responsive play area
+
+The play area will shrink or grow depending on the size of the host device. This feature ensures that the player can always see the entire play area.
 
 ### Features left to implement
 
@@ -85,23 +95,27 @@ The game was written using Javascript and styling was done with CSS. The game it
 
 ## Testing
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+The game was tested on a number of devices in order to ensure compatibility.
 
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
+![Chrome](/images/chrome.jpg)
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
+**Image 4.** *The game running on a desktop computer running the Chrome browser*
 
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
+![Firefox](/images/firefox.jpg)
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+**Image 5.** *The game running on a desktop computer running the Firefox browser*
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+![IPad](/images/ipad.jpg)
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+**Image 6.** *The game running on an emulated IPad*
+
+![IPhone 6](/images/iphone6.jpg)
+
+**Image 7.** *The game running on an emulated IPhone 6*
+
+![Galaxy](/images/galaxy.jpg)
+
+**Image 8.** *The game running on a Samsung Galaxy smartphone, deployed from Github pages*
 
 ## Deployment
 
@@ -110,6 +124,27 @@ The source code for the game is hosted on GitHub and the page that the game run 
 [Deployed game link](https://andrewdempsey2018.github.io/Maze-Runner/ "Maze Runner")
 
 ## Git commit log
+
+There were 18 commits in total for this project
+
+1. Initial commit
+2. Added a basic level & player character
+3. Added some styles to the css file to improve visibility
+4. Made some layout changes with Bootstrap
+5. Bug fixes on player movement code
+6. Fixed bug where player sprite position reset after every move
+7. Added assets folder, moved level data to external file
+8. Added to UI, improved player movement
+9. Worked on README.md
+10. Updated the README.md file
+11. Updated README.md, added styling
+12. Refactor index.html, add comments
+13. Added sound effects
+14. Added exit level functionality
+15. Added more levels
+16. Fixed error where character was not spawning properly
+17. Updated README.md, added some styling
+18. Updated README.md, added button functionality
 
 ### Running the game locally
 

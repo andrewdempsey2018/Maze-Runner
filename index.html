@@ -44,10 +44,10 @@
 	<div class="container">
 		<div class="row">
             <div class="col-sm UI">
-			    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="restartGame()">Reset</button>
+			    <button type="button" onclick="restartGame()" class="btn btn-primary btn-lg btn-block">Reset</button>
 			</div>
 			<div class="col-sm UI">
-			    <button type="button" class="btn btn-primary btn-lg btn-block">How To Play</button>
+			    <button type="button" onclick="instructions()" class="btn btn-primary btn-lg btn-block">How To Play</button>
 			</div>
 		</div>
 	</div>
@@ -246,6 +246,11 @@
             .attr("width", 32)
 		    .attr("height", 32)
 		    .attr('fill', '#17c200'); //green
+	};
+
+	function instructions()
+	{
+		window.alert("hi");
 	};
 
 	</script>
