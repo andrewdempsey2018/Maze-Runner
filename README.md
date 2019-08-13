@@ -2,7 +2,7 @@
 
 This a single player game where the player guides their character from the start of a maze to the end within a time limit. There are multiple mazes to explore and each one is more complex and challenging than the last.  
 
-The game is compatible with mobile devices as well as desktop computers in a variety of browsers.
+The game is compatible with mobile devices as well as desktop computers in a variety of browsers. The player controls the character by clicking or tapping the part of the screen that they want to move to.
  
 ## UX
 
@@ -44,6 +44,10 @@ a
 
 ### Multiple levels
 
+### Features left to implement
+
+It would be very interesting if an algorithm could be written that would auto generate random levels. This would give the player much more variety than the pre-built levels available at the moment.
+
 ## Technologies Used
 
 ### Languages
@@ -79,14 +83,6 @@ The game was written using Javascript and styling was done with CSS. The game it
 - [VSCode](https://code.visualstudio.com/)
     - Coding was done using Microsoft VSCode which is a bare bones IDE that works with a number of languages. Features include smart code indentation and auto completeion.
 
-- [Jasmine](https://jasmine.github.io/)
-    - For Testing !!!!!!!!
-
-
-
-
-
-
 ## Testing
 
 In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
@@ -119,16 +115,6 @@ The source code for the game is hosted on GitHub and the page that the game run 
 
 In order to run the game on a smartphone/tablet or desktop PC, simply open the file "index.html" in any browser. Be sure that the directory structure is maintained as it is in the zip file.
 
-
-
-## Credits
-
-### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
-
-### Media
-- The photos used in this site were obtained from ...
-
-### Acknowledgements
+## Acknowledgements
 
 - The team on the Code Institute "Slack" channel were a great help with this project.

@@ -10,7 +10,7 @@
 
 	<!-- Import Bootstrap from CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<!-- Use CDN version of D3 -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
@@ -97,19 +97,24 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	takes two arguments, the x and y position of the tile */
 	class Tile
 	{
-		constructor(x, y)
+		constructor(x, y, color)
 		{
 			this.sprite =  scene.append("rect")
 				.attr("x", x)
                 .attr("y", y)
                 .attr("width", TILE_WIDTH)
 		        .attr("height", TILE_HEIGHT)
-				.attr('fill', '#666666');
+				.attr('fill', color); //grey
 		}
+
 	}
 
-	/* */
-	loadLevel(level3);
+	/* call the load level function, loading the first level initially */
+	loadLevel(level1);
+
+	/* this variable is incremented when the player reaches an exit, enableing advancement
+	to the next level */
+	var currentLevel = 1;
 
 	/* load sounds that will be played during the game */
 	var moveSound = document.getElementById("moveSound");
@@ -149,8 +154,15 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 				.attr("y", destY)
 				.attr("x", destX);
 
+		if(level1[getCoordinate(destY + 16)][getCoordinate(destX + 16)] == 2)
+		{
+			window.alert("hi");
+		}
+
+		/* call the play mothod on the moveSound element to play the sound */
 		moveSound.play();
 
+		/* causes the browser to repaint the current screen */
 		window.requestAnimationFrame();
 	};
 
@@ -159,6 +171,13 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	{
 		var gridPosition = Math.floor(object / TILE_WIDTH);
 		return gridPosition * TILE_WIDTH;
+	}
+
+	/* takes a coordinate value and returns that value as a grid value */
+	function getCoordinate(object)
+	{
+		var co = Math.floor(object / TILE_WIDTH);
+		return co;
 	}
 
 	/* takes a level name as an argument, iterates over each entry in that levels data,
@@ -174,15 +193,22 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 		{
 			for(var j = 0; j < TILES_DOWN; j++)
 			{
+				/* if we encounter number 1, load a grey tile */
 				if(levelToLoad[j][i] == 1)
 				{
-					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH);
+					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#666666');
+				}
+
+				/* if we encounter number 2, load a yellow tile (an exit from the maze) */
+				if(levelToLoad[j][i] == 2)
+				{
+					tiles[tileCounter] = new Tile(i * TILE_HEIGHT, j * TILE_WIDTH, '#ffed47');
 				}
 			}
 
 			tileCounter++;
+		}
 	}
-}
 
 	</script>
 
