@@ -109,12 +109,15 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 
 	}
 
-	/* call the load level function, loading the first level initially */
-	loadLevel(level1);
-
 	/* this variable is incremented when the player reaches an exit, enableing advancement
 	to the next level */
-	var currentLevel = 1;
+	var currentLevel = 2;
+
+	/* an array of level names, we will use this array to deal with changing levels */
+	var levels = [level1, level2, level3];
+
+	/* call the load level function, loading the first level initially */
+	loadLevel(levels[currentLevel]);
 
 	/* load sounds that will be played during the game */
 	var moveSound = document.getElementById("moveSound");
@@ -154,9 +157,11 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 				.attr("y", destY)
 				.attr("x", destX);
 
-		if(level1[getCoordinate(destY + 16)][getCoordinate(destX + 16)] == 2)
+		/* if the player finds an exit, increment the level number then load the next level */
+		if(levels[currentLevel][getCoordinate(destY + 16)][getCoordinate(destX + 16)] == 2)
 		{
-			window.alert("hi");
+			currentLevel++;
+			loadLevel(currentLevel);
 		}
 
 		/* call the play mothod on the moveSound element to play the sound */
@@ -185,6 +190,10 @@ It is important to load sounds in multiple formats (OGG, MP3) in order to ensure
 	is the number 1, a tile is placed in those coordinates */
 	function loadLevel(levelToLoad)
 	{
+		/* everytime we load a level, we must reset the players position
+		so that the player character begins the level at the starting position */
+		playerX = 0;
+		playerY = 32;
 		
 		var tileCounter = 0;
 		var tiles = [];
