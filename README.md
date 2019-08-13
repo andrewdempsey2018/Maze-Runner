@@ -10,24 +10,29 @@ The game is compatible with mobile devices as well as desktop computers in a var
 
 ### User story 1
 
-As a teacher of young children, the game helps my students practice memory as well as problem solving. It works on all of their differnet tablets.
+As a teacher of young children, I use this game with my students to help them improve their memory and learn problem solving skills. The game is compatible with a variety of tablets that my students bring to school.
 
 ### User story 2
 
-As a tourist who travels on public transport often, it is good to have a game that passes the time.
+As a tourist who travels on public transport often, it is good to have a game  that works on my smartphone to pass the time on long journeys.
 
 ### User story 3
 
-As a game player, it is good to have a game that is compatible with all of my computers that provides a challenge.
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+As a game player, it is good to have a game that is compatible with my desktop computer that provides a good challenge.
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-- As a user type, I want to perform an action, so that I can achieve a goal.
+## Design and planning
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+![Main Game Screen](/images/main.jpg)
 
+**Image 1.** *Here we see a mock up of the main game screen. We can see the main title text at the top of the screen, this text should be large and eye catching using a nice font. We can see the obstacles and corridors that the player will be navigating. The main game screen should shrink or expand depending on the screen size of the device being used. Note the buttons on the bottom of the main screen. These should be styled with CSS and Bootstrap and provide a way for the player to start the game or restart it should the game enter gameover state. Note also the "exit" marker. This is the goal that the player must reach in order to move on to the next level.*
 
+![Main Game Screen](/images/howtoplay.jpg)
+
+**Image 2.** *This is a mockup of the "how to play" screen. This screen should give the player information about how to play the game, what the goals are. It should also inform the player about how to interact with the UI etc.*
+
+![Main Game Screen](/images/gameover.jpg)
+
+**Image 3.** *Here we see a mock up of the Game Over screen. This is what the player will see if they do not find the exit in a level before the timer runs out. We see that a message should appear on screen, informing the user that time has run out and that the game has ended. Not seen in this diagram is a message that should probably be included that informs the player how to restart the game should they wish to play again.*
 
 ## Features
 
@@ -46,10 +51,11 @@ In addition, you may also use this section to discuss plans for additional featu
 
 ## Technologies Used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
+- [Google Fonts](https://fonts.google.com/)
+    - Google Fonts provides free fonts that were used to improve the asthetic appeal of the application.
 
-- [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+- [Tiled](https://www.mapeditor.org/)
+    - A 2 dimensional map editor that was used to build the levels used in the game. Levels can be exported in a number of different ways. In the case of this game, the levels were build and exported as CSV files. These CSV files because the two dimensional arrays we see in the levels.js file.
 
 
 ## Testing

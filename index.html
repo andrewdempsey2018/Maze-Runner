@@ -20,10 +20,13 @@
 	<!-- Stylesheet import -->
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 
+	<!-- Font to be used for main game title text -->
+	<link href="https://fonts.googleapis.com/css?family=Notable&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-	<div class="container">
+	<div class="container mainTitle">
 		<div class="row" id="titleArea">
 			<h1>Maze Runner</h1>
 		</div>
@@ -110,7 +113,7 @@
 		.attr("height", 32)
 		.attr('fill', '#17c200')
 
-	function move()
+    function move()
 	{
 		/* */
 		var mouse = d3.mouse(this);
@@ -120,19 +123,13 @@
 
 		if(mouse[1] > playerY && mouse[1] < (playerY + PLAYER_HEIGHT))
 		{
- 
-
 			player.attr("x", playerX);
-		
 			playerX = destX;
 		}
 
 		if(mouse[0] > playerY && mouse[0] < (playerX + PLAYER_HEIGHT))
 		{
- 
-
 			player.attr("y", playerY);
-		
 			playerY = destY;
 		}
 

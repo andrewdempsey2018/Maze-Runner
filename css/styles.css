@@ -1,6 +1,20 @@
-/* add styles to the main drawing area using its id value */
+/* Styles for main gameplay area */
 
 #playArea
 {
     background-color: #e3e0d8;
+}
+
+/* Styles for main title area at top of screen */
+
+.mainTitle
+{
+	/* Notable font looks good, sans serif as backup */
+	font-family: 'Notable', sans-serif;
+	
+}
+	
+.row
+{
+text-align: center;
 }
