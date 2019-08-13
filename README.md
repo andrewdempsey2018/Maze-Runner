@@ -22,6 +22,8 @@ As a game player, it is good to have a game that is compatible with my desktop c
 
 ## Design and planning
 
+A high level plan for the game was first drawn out on paper...
+
 ![Main Game Screen](/images/main.jpg)
 
 **Image 1.** *Here we see a mock up of the main game screen. We can see the main title text at the top of the screen, this text should be large and eye catching using a nice font. We can see the obstacles and corridors that the player will be navigating. The main game screen should shrink or expand depending on the screen size of the device being used. Note the buttons on the bottom of the main screen. These should be styled with CSS and Bootstrap and provide a way for the player to start the game or restart it should the game enter gameover state. Note also the "exit" marker. This is the goal that the player must reach in order to move on to the next level.*
@@ -51,11 +53,40 @@ In addition, you may also use this section to discuss plans for additional featu
 
 ## Technologies Used
 
+### Languages
+
+The game was written using Javascript and styling was done with CSS. The game itself is housed in a webpage using HTML.
+
 - [Google Fonts](https://fonts.google.com/)
     - Google Fonts provides free fonts that were used to improve the asthetic appeal of the application.
 
 - [Tiled](https://www.mapeditor.org/)
     - A 2 dimensional map editor that was used to build the levels used in the game. Levels can be exported in a number of different ways. In the case of this game, the levels were build and exported as CSV files. These CSV files because the two dimensional arrays we see in the levels.js file.
+
+- [GitHub](https://github.com/)
+    - Version control and hosting were implemented using Git and GitHub.
+
+- [Bootstrap](https://getbootstrap.com/)
+    - Used for styling dom elements and page layout needs.
+
+- [SFXR](http://www.drpetter.se/project_sfxr.html)
+    - A sound effects generating software package used for creating the sounds used in game. The program provides a simple user interface allowing fast creation of unique sounds.
+
+- [D3](https://d3js.org/)
+    - A Javascript library that is used mainly for the creation of data driven documents. In the case of this game, D3's drawing functions were used to create the player character as well as the building blocks for each maze.
+
+- [Google Chrome](https://www.google.com/chrome/b/)
+    - Chrome browser was used for running and testing the game. Chrome was chosen because it features a rich set of developer tools such as simulation of a variety of mobile devices as well as useful debugging tools.
+
+- [VSCode](https://code.visualstudio.com/)
+    - Coding was done using Microsoft VSCode which is a bare bones IDE that works with a number of languages. Features include smart code indentation and auto completeion.
+
+- [Jasmine](https://jasmine.github.io/)
+    - For Testing !!!!!!!!
+
+
+
+
 
 
 ## Testing
@@ -80,14 +111,16 @@ If this section grows too long, you may want to split it off into a separate fil
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+The source code for the game is hosted on GitHub and the page that the game run within is hosted on GitHub pages and is an instance of the index.html page on the master branch.
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+[Deployed game link](https://andrewdempsey2018.github.io/Maze-Runner/ "Maze Runner")
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+## Git commit log
+
+### Running the game locally
+
+In order to run the game on a smartphone/tablet or desktop PC, simply open the file "index.html" in any browser. Be sure that the directory structure is maintained as it is in the zip file.
+
 
 
 ## Credits

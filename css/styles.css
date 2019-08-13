@@ -9,12 +9,6 @@
 
 .mainTitle
 {
-	/* Notable font looks good, sans serif as backup */
+	/* Notable font (from Google Fonts) looks good, sans serif as backup */
 	font-family: 'Notable', sans-serif;
-	
-}
-	
-.row
-{
-text-align: center;
 }
